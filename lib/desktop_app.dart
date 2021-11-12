@@ -30,16 +30,21 @@ import 'windows/windows_app_theme.dart';
 class DesktopApp extends StatelessWidget {
   //---------- Initialization
 
-  const DesktopApp({Key? key, required String title, required String initialRoute, required Map<String, WidgetBuilder>? routes})
+  const DesktopApp(
+      {Key? key,
+      required String title,
+      required String initialRoute,
+      required Map<String, WidgetBuilder> routes})
       : _appTitle = title,
         _initialRoute = initialRoute,
-        _routes = routes
+        _routes = routes,
         super(key: key);
 
   //---------- Private Properties
 
   final String _appTitle;
-  final Map<String, WidgetBuilder>? _routes;
+  final String _initialRoute;
+  final Map<String, WidgetBuilder> _routes;
 
   static final ValueNotifier<ThemeMode> _themeNotifier = ValueNotifier(ThemeMode.light);
 
