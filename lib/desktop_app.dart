@@ -30,15 +30,16 @@ import 'windows/windows_app_theme.dart';
 class DesktopApp extends StatelessWidget {
   //---------- Initialization
 
-  const DesktopApp({Key? key, required String title, required Widget home})
+  const DesktopApp({Key? key, required String title, required String initialRoute, required Map<String, WidgetBuilder>? routes})
       : _appTitle = title,
-        _home = home,
+        _initialRoute = initialRoute,
+        _routes = routes
         super(key: key);
 
   //---------- Private Properties
 
   final String _appTitle;
-  final Widget _home;
+  final Map<String, WidgetBuilder>? _routes;
 
   static final ValueNotifier<ThemeMode> _themeNotifier = ValueNotifier(ThemeMode.light);
 
@@ -62,7 +63,8 @@ class DesktopApp extends StatelessWidget {
       themeMode: currentMode,
       theme: MacosThemeData.light(),
       darkTheme: MacosThemeData.dark(),
-      home: _home,
+      initialRoute: _initialRoute,
+      routes: _routes,
       debugShowCheckedModeBanner: false,
     );
   }
@@ -81,8 +83,8 @@ class DesktopApp extends StatelessWidget {
           glowFactor: is10footScreen() ? 2.0 : 0.0,
         ),
       ),
-      initialRoute: '/',
-      routes: {'/': (_) => _home},
+      initialRoute: _initialRoute,
+      routes: _routes,
       debugShowCheckedModeBanner: false,
     );
   }
